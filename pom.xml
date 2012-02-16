@@ -1,0 +1,202 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.mschmidt</groupId>
+  <artifactId>starter</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1</version>
+  <name>Starter Web App Architecture</name>
+  <url>http://maven.apache.org</url>
+  
+  <properties>
+    <springVersion>3.1.0.RELEASE</springVersion>
+    <hibernateVersion>4.0.1.Final</hibernateVersion>
+    <restletVersion>2.0.10</restletVersion>
+  </properties>
+  
+  <dependencies>
+    <dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-log4j12</artifactId>
+		<version>1.6.1</version>
+		<type>jar</type>
+		<scope>compile</scope>
+	</dependency>
+	<dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-api</artifactId>
+		<version>1.6.1</version>
+		<type>jar</type>
+		<scope>compile</scope>
+	</dependency>
+	<!-- RESTLET -->
+    <dependency>  
+	   <groupId>org.restlet.jee</groupId>  
+	   <artifactId>org.restlet</artifactId>  
+	   <version>${restletVersion}</version>  
+	</dependency>
+	<dependency>  
+	   <groupId>org.restlet.jee</groupId>  
+	   <artifactId>org.restlet.ext.servlet</artifactId>  
+	   <version>${restletVersion}</version>  
+	</dependency>
+	<dependency>  
+	   <groupId>org.restlet.jee</groupId>  
+	   <artifactId>org.restlet.ext.xml</artifactId>
+	   <version>${restletVersion}</version>
+	</dependency>
+	<dependency>  
+	   <groupId>org.restlet.jee</groupId>  
+	   <artifactId>org.restlet.ext.jaxrs</artifactId>  
+	   <version>${restletVersion}</version>
+	</dependency>
+	<dependency>  
+	   <groupId>org.restlet.jee</groupId>  
+	   <artifactId>org.restlet.ext.spring</artifactId>  
+	   <version>${restletVersion}</version>
+	   <exclusions>
+	   		<exclusion>
+	   			<groupId>org.springframework</groupId>
+	   			<artifactId>spring-expression</artifactId>
+	   		</exclusion>
+	   </exclusions>
+	</dependency>
+	<!-- SPRING -->
+	<dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-aspects</artifactId>
+      <version>${springVersion}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-beans</artifactId>
+      <version>${springVersion}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>${springVersion}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-core</artifactId>
+      <version>${springVersion}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>${springVersion}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-tx</artifactId>
+      <version>${springVersion}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-web</artifactId>
+      <version>${springVersion}</version>
+    </dependency>
+    
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-webmvc</artifactId>
+      <version>${springVersion}</version>
+    </dependency>
+    
+	<dependency>
+		<groupId>org.springframework</groupId>
+		<artifactId>spring-orm</artifactId>
+		<version>${springVersion}</version>
+	</dependency>
+    
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<version>4.10</version>
+		<scope>test</scope>
+	</dependency>
+	<!-- MySQL database driver -->
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.18</version>
+	</dependency>
+	
+	<!-- Hibernate framework -->
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-core</artifactId>
+		<version>${hibernateVersion}</version>
+		<exclusions>
+			<exclusion>
+				<groupId>cglib</groupId>
+				<artifactId>cglib</artifactId>
+			</exclusion>
+		</exclusions>
+	</dependency>
+	<dependency>
+		<groupId>cglib</groupId>
+		<artifactId>cglib-nodep</artifactId>
+		<version>2.2</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-commons-annotations</artifactId>
+		<version>3.2.0.Final</version>
+	</dependency>
+	<dependency>
+		<groupId>org.hibernate</groupId>
+		<artifactId>hibernate-entitymanager</artifactId>
+		<version>${hibernateVersion}</version>
+	</dependency>
+	<dependency>
+		<groupId>c3p0</groupId>
+		<artifactId>c3p0</artifactId>
+		<version>0.9.1.2</version>
+	</dependency>
+  </dependencies>
+  <repositories>
+	<repository>  
+		<id>maven-restlet</id>  
+	   	<name>Public online Restlet repository</name>  
+	   	<url>http://maven.restlet.org</url>  
+	</repository>
+  </repositories>
+  <build>
+    <finalName>starter</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <source>1.6</source>
+          <target>1.6</target>
+        </configuration>
+      </plugin>
+	  <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>2.2</version>
+        <configuration>
+          <webResources>
+            <resource>
+              <!-- this is relative to the pom.xml directory -->
+              <directory>src/main/webapp</directory>
+              <filtering>true</filtering>
+            </resource>
+          </webResources>
+        </configuration>
+      </plugin>
+     
+    </plugins>
+  </build>
+  <description>Web application with a Hibernate/JPA, Spring, REST architecture</description>
+</project>
