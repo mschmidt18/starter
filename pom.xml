@@ -9,9 +9,9 @@
   <url>http://maven.apache.org</url>
   
   <properties>
-    <springVersion>3.1.0.RELEASE</springVersion>
-    <hibernateVersion>4.0.1.Final</hibernateVersion>
-    <restletVersion>2.0.10</restletVersion>
+    <springVersion>3.1.3.RELEASE</springVersion>
+    <hibernateVersion>4.1.8.Final</hibernateVersion>
+    <restletVersion>2.1.0</restletVersion>
   </properties>
   
   <dependencies>
@@ -156,6 +156,20 @@
 		<artifactId>hibernate-entitymanager</artifactId>
 		<version>${hibernateVersion}</version>
 	</dependency>
+	
+	<!-- Hibernate Search -->
+	<dependency>
+	     <groupId>org.hibernate</groupId>
+	     <artifactId>hibernate-search</artifactId>
+	     <version>4.1.1.Final</version>
+	</dependency>
+	<!-- Additional Analyzers: -->
+	<dependency>
+	   <groupId>org.hibernate</groupId>
+	   <artifactId>hibernate-search-analyzers</artifactId>
+	   <version>4.1.1.Final</version>
+	</dependency>
+	
 	<dependency>
 		<groupId>c3p0</groupId>
 		<artifactId>c3p0</artifactId>
