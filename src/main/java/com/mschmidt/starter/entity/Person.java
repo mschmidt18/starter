@@ -11,12 +11,19 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.search.annotations.Analyze;
+import org.hibernate.search.annotations.Field;
+import org.hibernate.search.annotations.Index;
+import org.hibernate.search.annotations.Indexed;
+import org.hibernate.search.annotations.Store;
+
 /**
  * @author mschmidt18@gmail.com
  * 
  */
 @javax.persistence.Entity
 @Table
+@Indexed
 public class Person extends Entity {
 
 	private static final long serialVersionUID = 1L;
@@ -26,6 +33,7 @@ public class Person extends Entity {
 	private Address address;
 	private Set<PhoneNumber> phoneNumbers;
 
+	@Field(name = "firstName", index = Index.YES, analyze = Analyze.YES, store = Store.NO)
 	@Column(nullable = false, updatable = true, length = 500)
 	public String getFirstName() {
 		return firstName;
@@ -35,6 +43,7 @@ public class Person extends Entity {
 		this.firstName = firstName;
 	}
 
+	@Field(name = "lastName", index = Index.YES, analyze = Analyze.YES, store = Store.NO)
 	@Column(nullable = false, updatable = true, length = 500)
 	public String getLastName() {
 		return lastName;
