@@ -26,7 +26,7 @@
     
 	<bean id="applicationEncryptor" class="com.mschmidt.starter.encryption.ApplicationEncryptor"/>
     
-    <bean id="applicationProperties"
+    <bean id="propertiesBean"
 		class="org.jasypt.spring31.xml.encryption.EncryptablePropertiesFactoryBean">
 		<property name="encryptor">
 			<util:property-path path="applicationEncryptor.encryptor" />
@@ -44,7 +44,7 @@
 		<constructor-arg>
 			<util:property-path path="applicationEncryptor.encryptor" />
 		</constructor-arg>
-		<property name="properties" ref="applicationProperties"/>
+		<property name="properties" ref="propertiesBean"/>
 		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
 		<property name="searchSystemEnvironment" value="true"/>
     </bean>

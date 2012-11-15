@@ -16,7 +16,7 @@ import org.springframework.stereotype.Service;
 public class ApplicationProperties implements InitializingBean {
 
 	@Autowired
-	@Qualifier(value = "applicationProperties")
+	@Qualifier(value = "propertiesBean")
 	private Properties properties;
 
 	@Override
@@ -25,6 +25,10 @@ public class ApplicationProperties implements InitializingBean {
 			throw new IllegalArgumentException(
 					"Property 'properties' is required");
 		}
+	}
+
+	public boolean getReindex() {
+		return Boolean.parseBoolean(properties.getProperty("reindex"));
 	}
 
 	// example

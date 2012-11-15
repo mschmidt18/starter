@@ -15,9 +15,9 @@
 	<import resource="classpath:/hibernateContext.xml"/>
 
 	<!-- Spring Component Scanning -->
+ 	<context:component-scan base-package="com.mschmidt.starter.utils" />
  	<context:component-scan base-package="com.mschmidt.starter.dao" />
  	<context:component-scan base-package="com.mschmidt.starter.business" />
- 	<context:component-scan base-package="com.mschmidt.starter.utils" />
 	<!-- End Spring Component Scanning -->
 	
 	<!-- any other bean declarations -->
