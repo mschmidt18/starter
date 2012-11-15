@@ -14,7 +14,7 @@ import com.mschmidt.starter.entity.Entity;
  */
 public abstract class BaseBO<T extends Entity> {
 
-	public abstract IBaseDAO<T, Long> getBaseDAO();
+	protected abstract IBaseDAO<T, Long> getBaseDAO();
 
 	/**
 	 * Find an entity by its primary key

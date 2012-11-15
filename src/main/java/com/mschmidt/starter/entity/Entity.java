@@ -29,7 +29,7 @@ public abstract class Entity implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "ID")
+	@Column
 	public Long getId() {
 		return id;
 	}
@@ -39,7 +39,7 @@ public abstract class Entity implements Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "CREATED_DATE", unique = false, nullable = false, insertable = true, updatable = true, length = 7)
+	@Column(unique = false, nullable = false, insertable = true, updatable = true, length = 7)
 	public Date getCreated_date() {
 		return created_date;
 	}
@@ -49,7 +49,7 @@ public abstract class Entity implements Serializable {
 	}
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "MODIFIED_DATE", unique = false, nullable = true, insertable = true, updatable = true, length = 7)
+	@Column(unique = false, nullable = true, insertable = true, updatable = true, length = 7)
 	public Date getModified_date() {
 		return modified_date;
 	}
