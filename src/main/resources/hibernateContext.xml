@@ -25,13 +25,23 @@
 		</property>
 	</bean>
 	
+	<!-- To use HSQLDB in memory database, use this datasource and select the appropriate dialect in application.properties -->
+		
 	<bean id="dataSource" 
          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
-		<property name="driverClassName" value="${jdbc.driverClassName}" />
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
+		<property name="url" value="jdbc:hsqldb:mem:starter"/>
+		<property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
 	</bean>
+
+	<!-- To use a MySql database, use this datasource and select the appropriate dialect in application.properties -->
+	
+<!-- 	<bean id="dataSource"  -->
+<!--          class="org.springframework.jdbc.datasource.DriverManagerDataSource"> -->
+<!-- 		<property name="driverClassName" value="${jdbc.driverClassName}" /> -->
+<!-- 		<property name="url" value="${jdbc.url}" /> -->
+<!-- 		<property name="username" value="${jdbc.username}" /> -->
+<!-- 		<property name="password" value="${jdbc.password}" /> -->
+<!-- 	</bean> -->
 
 	<bean id="vendorAdapter"
 		class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">

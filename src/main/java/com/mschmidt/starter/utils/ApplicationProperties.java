@@ -13,22 +13,31 @@ import org.springframework.stereotype.Service;
  * 
  */
 @Service
-public class ApplicationProperties implements InitializingBean {
+public class ApplicationProperties implements InitializingBean
+{
 
 	@Autowired
 	@Qualifier(value = "propertiesBean")
 	private Properties properties;
 
 	@Override
-	public void afterPropertiesSet() throws Exception {
-		if (properties == null) {
+	public void afterPropertiesSet() throws Exception
+	{
+		if (properties == null)
+		{
 			throw new IllegalArgumentException(
 					"Property 'properties' is required");
 		}
 	}
 
-	public boolean getReindex() {
+	public boolean getReindex()
+	{
 		return Boolean.parseBoolean(properties.getProperty("reindex"));
+	}
+
+	public String getProperty(String property)
+	{
+		return properties.getProperty(property);
 	}
 
 	// example
