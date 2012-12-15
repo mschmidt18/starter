@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
@@ -56,6 +58,17 @@ public abstract class Entity implements Serializable {
 
 	public void setModified_date(Date modified_date) {
 		this.modified_date = modified_date;
+	}
+
+	@PrePersist
+	private void onSave() {
+		created_date = new Date();
+		modified_date = new Date();
+	}
+
+	@PreUpdate
+	private void onUpdate() {
+		modified_date = new Date();
 	}
 
 }

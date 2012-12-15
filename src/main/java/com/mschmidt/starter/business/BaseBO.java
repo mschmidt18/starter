@@ -5,6 +5,8 @@ package com.mschmidt.starter.business;
 
 import java.util.List;
 
+import org.springframework.transaction.annotation.Transactional;
+
 import com.mschmidt.starter.dao.IBaseDAO;
 import com.mschmidt.starter.entity.Entity;
 
@@ -75,6 +77,7 @@ public abstract class BaseBO<T extends Entity> {
 	 * 
 	 * @return the saved entity
 	 */
+	@Transactional
 	public T save(final T entity) {
 		return getBaseDAO().save(entity);
 	}
@@ -85,6 +88,7 @@ public abstract class BaseBO<T extends Entity> {
 	 * @param entity
 	 *            the entity to delete
 	 */
+	@Transactional
 	public void delete(final T entity) {
 		getBaseDAO().delete(entity);
 	}
