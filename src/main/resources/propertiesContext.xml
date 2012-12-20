@@ -2,11 +2,35 @@
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.1.xsd">
 
 	
-	<bean id="applicationProperties"
-		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+<!-- 	<bean id="applicationProperties" -->
+<!-- 		class="org.springframework.beans.factory.config.PropertiesFactoryBean"> -->
+<!-- 		<property name="locations"> -->
+<!-- 			<list> -->
+<!-- 				<value>classpath:/application.properties</value> -->
+<!-- 			</list> -->
+<!-- 		</property> -->
+<!-- 		<property name="ignoreResourceNotFound" value="false" /> -->
+<!--     </bean> -->
+    
+<!-- 	<bean id="propertyConfigurer" -->
+<!-- 		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+<!-- 		<property name="properties" ref="applicationProperties"/> -->
+<!-- 		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/> -->
+<!-- 		<property name="searchSystemEnvironment" value="true"/> -->
+<!--     </bean> -->
+    
+	<bean id="applicationEncryptor" class="com.mschmidt.starter.encryption.ApplicationEncryptor"/>
+    
+    <bean id="propertiesBean"
+		class="org.jasypt.spring31.xml.encryption.EncryptablePropertiesFactoryBean">
+		<property name="encryptor">
+			<util:property-path path="applicationEncryptor.encryptor" />
+		</property>
 		<property name="locations">
 			<list>
 				<value>classpath:/application.properties</value>
@@ -16,10 +40,14 @@
     </bean>
     
 	<bean id="propertyConfigurer"
-		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-		<property name="properties" ref="applicationProperties"/>
+		class="org.jasypt.spring31.properties.EncryptablePropertyPlaceholderConfigurer">
+		<constructor-arg>
+			<util:property-path path="applicationEncryptor.encryptor" />
+		</constructor-arg>
+		<property name="properties" ref="propertiesBean"/>
 		<property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE"/>
 		<property name="searchSystemEnvironment" value="true"/>
     </bean>
+    
     
 </beans>
